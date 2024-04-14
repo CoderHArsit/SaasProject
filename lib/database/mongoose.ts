@@ -14,10 +14,10 @@ interface MongooseConnection{
 let cached: MongooseConnection=(global as any).mongoose;
 
 if((!cached)){
-    cached=(!global as any).mongoose={
+    cached=(global as any).mongoose={
         conn:null,promise:null
     };
-    cached=(global as any).mongoose;
+    
 }
 
 export const connectToDatabase=async()=>{
@@ -30,7 +30,7 @@ export const connectToDatabase=async()=>{
         })
         cached.conn=await cached.promise;
 
-
+return cached.conn;
 }
 // Let's walk through the code step by step to understand what it does and how it works.
 
